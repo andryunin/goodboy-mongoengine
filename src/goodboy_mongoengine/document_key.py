@@ -95,10 +95,14 @@ class DocumentFieldKey(DocumentKey):
         value = self._field.validate(value, typecast, context)
 
         if self._field.unique:
-            raise NotImplementedError()
+            conds = {self._field.name: value}
 
-            # TODO:
-            exists = False
+            if instance:
+                conds[f"{self._mongo_pk_field.name}__ne"] = instance.id
+
+            exists = bool(
+                self._document_class.objects(**conds).only(self._field.name).first()
+            )
 
             if exists:
                 raise gb.SchemaError([self._error("already_exists")])
