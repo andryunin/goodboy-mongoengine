@@ -8,8 +8,10 @@ from goodboy_mongoengine.document_key import (
 )
 from goodboy_mongoengine.field import Field, FieldBuilder, FieldBuilderError
 from goodboy_mongoengine.field_schemas import (
+    ME_TYPE_MAPPING,
     FieldSchemaBuilder,
     FieldSchemaBuilderError,
+    FieldSchemaFactory,
     field_schema_builder,
 )
 from goodboy_mongoengine.messages import DEFAULT_MESSAGES
@@ -33,5 +35,7 @@ __all__ = [
     "FieldBuilderError",
     "FieldSchemaBuilder",
     "FieldSchemaBuilderError",
+    "FieldSchemaFactory",
+    "ME_TYPE_MAPPING",
     "ObjectIdSchema",
 ]
