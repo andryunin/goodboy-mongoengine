@@ -7,6 +7,8 @@ import goodboy as gb
 import mongoengine as me
 from mongoengine.base.fields import BaseField
 
+from goodboy_mongoengine.schemas import ObjectIdSchema
+
 
 class FieldSchemaFactory(ABC):
     @abstractmethod
@@ -47,6 +49,11 @@ class IntFieldSchemaFactory(FieldSchemaFactory):
         )
 
 
+class ObjectIdFieldSchemaFactory(FieldSchemaFactory):
+    def build(self, field: me.ObjectIdField) -> ObjectIdSchema:
+        return ObjectIdSchema(allow_none=not field.required)
+
+
 class DictFieldFieldSchemaFactory(FieldSchemaFactory):
     def build(self, field: me.DictField) -> gb.Dict:
         return gb.Dict(allow_none=not field.required, key_schema=gb.Str())
@@ -57,6 +64,7 @@ ME_TYPE_MAPPING: dict[Type[BaseField], FieldSchemaFactory] = {
     me.DictField: DictFieldFieldSchemaFactory(),
     me.BooleanField: BooleanFieldSchemaFactory(),
     me.IntField: IntFieldSchemaFactory(),
+    me.ObjectIdField: ObjectIdFieldSchemaFactory(),
 }
 
 
