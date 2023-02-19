@@ -33,14 +33,30 @@ class StringFieldSchemaFactory(FieldSchemaFactory):
         )
 
 
+class BooleanFieldSchemaFactory(FieldSchemaFactory):
+    def build(self, field: me.BooleanField) -> gb.Bool:
+        return gb.Bool(allow_none=not field.required)
+
+
+class IntFieldSchemaFactory(FieldSchemaFactory):
+    def build(self, field: me.IntField) -> gb.Int:
+        return gb.Int(
+            allow_none=not field.required,
+            less_than=field.max_value,
+            greater_than=field.min_value,
+        )
+
+
 class DictFieldFieldSchemaFactory(FieldSchemaFactory):
-    def build(self, field: me.DictField) -> gb.Str:
+    def build(self, field: me.DictField) -> gb.Dict:
         return gb.Dict(allow_none=not field.required, key_schema=gb.Str())
 
 
 ME_TYPE_MAPPING: dict[Type[BaseField], FieldSchemaFactory] = {
     me.StringField: StringFieldSchemaFactory(),
     me.DictField: DictFieldFieldSchemaFactory(),
+    me.BooleanField: BooleanFieldSchemaFactory(),
+    me.IntField: IntFieldSchemaFactory(),
 }
 
 
