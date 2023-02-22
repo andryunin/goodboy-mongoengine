@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "goodboy-mongoengine"
-version = "0.2.0"
+version = "0.2.1"
 description = "Data validation tool for MongoEngine"
 license = "MIT"
 authors = ["Maxim Andryunin <maxim.andryunin@gmail.com>"]

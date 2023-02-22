@@ -17,7 +17,7 @@ from goodboy_mongoengine.field_schemas import (
 from goodboy_mongoengine.messages import DEFAULT_MESSAGES
 from goodboy_mongoengine.schemas import ObjectIdSchema
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 __all__ = [
     "DEFAULT_MESSAGES",
