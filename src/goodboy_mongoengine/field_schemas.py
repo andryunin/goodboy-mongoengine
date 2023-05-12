@@ -49,6 +49,15 @@ class IntFieldSchemaFactory(FieldSchemaFactory):
         )
 
 
+class DecimalFieldSchemaFactory(FieldSchemaFactory):
+    def build(self, field: me.Decimal128Field) -> gb.DecimalSchema:
+        return gb.DecimalSchema(
+            allow_none=not field.required,
+            less_than=field.max_value,
+            greater_than=field.min_value,
+        )
+
+
 class ObjectIdFieldSchemaFactory(FieldSchemaFactory):
     def build(self, field: me.ObjectIdField) -> ObjectIdSchema:
         return ObjectIdSchema(allow_none=not field.required)
@@ -65,6 +74,7 @@ ME_TYPE_MAPPING: dict[Type[BaseField], FieldSchemaFactory] = {
     me.BooleanField: BooleanFieldSchemaFactory(),
     me.IntField: IntFieldSchemaFactory(),
     me.ObjectIdField: ObjectIdFieldSchemaFactory(),
+    me.Decimal128Field: DecimalFieldSchemaFactory(),
 }
 
 

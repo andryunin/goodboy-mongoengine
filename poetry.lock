@@ -214,14 +214,14 @@ wmi = ["wmi (>=1.5.1,<2.0.0)"]
 
 [[package]]
 name = "goodboy"
-version = "0.2.2"
+version = "0.2.4"
 description = "Data validation tool"
 category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
 files = [
-    {file = "goodboy-0.2.2-py3-none-any.whl", hash = "sha256:c83dca600fe1931760a0e0003ddf91cc561da7d09565d461a1f3cf20e66faf10"},
-    {file = "goodboy-0.2.2.tar.gz", hash = "sha256:3565a707818050a36d866687b2633776104dc6b20ad6911dcf9620e902eac577"},
+    {file = "goodboy-0.2.4-py3-none-any.whl", hash = "sha256:abf46fe3f1b1cd072d2a559e58bd4f1450e6200e95bd922adce1548d09d02f4c"},
+    {file = "goodboy-0.2.4.tar.gz", hash = "sha256:92e15e88edb0046c3eba9edf87446effee80696b4f2ecf79a8f83f8b0c5985e5"},
 ]
 
 [package.dependencies]
